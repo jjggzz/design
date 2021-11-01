@@ -19,15 +19,15 @@ func (MakeFoodImpl) MakeChicken() {
 }
 
 // 代理对象内部持有一个实现对象并且实现了行为的方法,看起来和被代理的对象类型一样
-// 具体的逻辑由实现对象做,代理对象可以在前后做一些跟业务无关的工作
+// 具体的逻辑由实现对象做, 代理对象可以在前后做一些跟业务无关的工作
 type MakeFoodImplProxy struct {
-	MakeFoodImpl
+	Impl MakeFoodImpl
 }
 
 func (m MakeFoodImplProxy) MakeChicken() {
 	start := time.Now().UnixNano()
 	fmt.Println("MakeChicken 调用开始: ", start)
-	m.MakeFoodImpl.MakeChicken()
+	m.Impl.MakeChicken()
 	end := time.Now().UnixNano()
 	fmt.Println("MakeChicken 调用结束: ", end)
 }
